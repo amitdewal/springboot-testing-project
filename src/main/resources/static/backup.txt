@@ -41,11 +41,11 @@ public class EmployeeRespositoryTests {
     public void givenEmployeeObject_whenSave_thenReturnSavedEmployee()
     {
         //given - precondition or setup
-//        Employee employee = Employee.builder()
-//                                    .firstName("amit")
-//                                    .lastName("dewal")
-//                                    .email("adewal@gmail.com")
-//                                    .build();
+        Employee employee = Employee.builder()
+                                    .firstName("amit")
+                                    .lastName("dewal")
+                                    .email("adewal@gmail.com")
+                                    .build();
         // when - action or behaviour that we are going to test
         Employee savedEmployee = employeeRepository.save(employee);
 
@@ -60,11 +60,11 @@ public class EmployeeRespositoryTests {
     public void givenEmployeeList_whenFinalAll_thenEmployeeList(){
 
         //given - precondtion or setup
-//        Employee employeeOne = Employee.builder()
-//                .firstName("Sachin")
-//                .lastName("Tendulkar")
-//                .email("Sachin@gmail.com")
-//                .build();
+        Employee employeeOne = Employee.builder()
+                .firstName("Sachin")
+                .lastName("Tendulkar")
+                .email("Sachin@gmail.com")
+                .build();
 
         Employee employeeTwo = Employee.builder()
                 .firstName("MS")
@@ -72,7 +72,7 @@ public class EmployeeRespositoryTests {
                 .email("Dhoni@gmail.com")
                 .build();
 
-        employeeRepository.save(employee);
+        employeeRepository.save(employeeOne);
         employeeRepository.save(employeeTwo);
 
         // when - action or behaviour that we are going to
@@ -90,22 +90,22 @@ public class EmployeeRespositoryTests {
      public void givenEmployeeObject_whenFindById_thenReturnEmployeeObject(){
 
          //given - precondtion or setup
-//         Employee employee = Employee.builder()
-//                                         .firstName("Sachin")
-//                                         .lastName("Tendulkar")
-//                                         .email("Sachin@gmail.com")
-//                                         .build();
+         Employee employeeOne = Employee.builder()
+                                         .firstName("Sachin")
+                                         .lastName("Tendulkar")
+                                         .email("Sachin@gmail.com")
+                                         .build();
 
 //         Employee employeeTwo = Employee.builder()
 //                                         .firstName("MS")
 //                                         .lastName("Dhoni")
 //                                         .email("Dhoni@gmail.com")
 //                                         .build();
-         employeeRepository.save(employee);
+         employeeRepository.save(employeeOne);
         // employeeRepository.save(employeeOne);
 
          // when - action or behaviour that we are going to test
-         Employee employeeDB = employeeRepository.findById(employee.getId()).get();
+         Employee employeeDB = employeeRepository.findById(employeeOne.getId()).get();
 
 
 
@@ -119,16 +119,16 @@ public class EmployeeRespositoryTests {
      public void givenEmployeeEmail_whenFindByEmail_thenReturnEmployeeObject(){
 
          //given - precondtion or setup
-//         Employee employee = Employee.builder()
-//                 .firstName("Sachin")
-//                 .lastName("Tendulkar")
-//                 .email("Sachin@gmail.com")
-//                 .build();
-        Employee savedEmployee = employeeRepository.save(employee);
+         Employee employeeOne = Employee.builder()
+                 .firstName("Sachin")
+                 .lastName("Tendulkar")
+                 .email("Sachin@gmail.com")
+                 .build();
+        Employee savedEmployee = employeeRepository.save(employeeOne);
         System.out.println(savedEmployee);
 
         // when - action or behaviour that we are going to test
-         Employee employeeDB = employeeRepository.findByEmail(employee.getEmail()).get();
+         Employee employeeDB = employeeRepository.findByEmail(employeeOne.getEmail()).get();
 
          //then - verify the output
 
@@ -141,16 +141,16 @@ public class EmployeeRespositoryTests {
          public void givenEmployeeObject_whenUpdateEmployee_thenReturnUpdatedEmployee(){
 
              //given - precondtion or setup
-//             Employee employee = Employee.builder()
-//                     .firstName("Sachin")
-//                     .lastName("Tendulkar")
-//                     .email("Sachin@gmail.com")
-//                     .build();
-             employeeRepository.save(employee);
+             Employee employeeOne = Employee.builder()
+                     .firstName("Sachin")
+                     .lastName("Tendulkar")
+                     .email("Sachin@gmail.com")
+                     .build();
+             employeeRepository.save(employeeOne);
 
              // when - action or behaviour that we are going to test
 
-             Employee saveEmployee = employeeRepository.findById(employee.getId()).get();
+             Employee saveEmployee = employeeRepository.findById(employeeOne.getId()).get();
 
              saveEmployee.setEmail("Ramesh@gmail.com");
              saveEmployee.setFirstName("Ramesh");
@@ -168,18 +168,18 @@ public class EmployeeRespositoryTests {
               public void givenEmployeeObject_whenDelete_thenEmployee(){
 
                   //given - precondtion or setup
-//                  Employee employee = Employee.builder()
-//                          .firstName("Sachin")
-//                          .lastName("Tendulkar")
-//                          .email("Sachin@gmail.com")
-//                          .build();
-                  employeeRepository.save(employee);
+                  Employee employeeOne = Employee.builder()
+                          .firstName("Sachin")
+                          .lastName("Tendulkar")
+                          .email("Sachin@gmail.com")
+                          .build();
+                  employeeRepository.save(employeeOne);
 
                   // when - action or behaviour that we are going to test
 
                   //employeeRepository.delete(employeeOne);
-                  employeeRepository.deleteById(employee.getId());
-                  Optional<Employee> employeeOptional = employeeRepository.findById(employee.getId());
+                  employeeRepository.deleteById(employeeOne.getId());
+                  Optional<Employee> employeeOptional = employeeRepository.findById(employeeOne.getId());
 
                   //then - verify the output
                   assertThat(employeeOptional).isEmpty();
@@ -192,19 +192,19 @@ public class EmployeeRespositoryTests {
                    public void givenFirstNameAndLastName_whenFindByJPQL_thenReturnEmployeeObject(){
 
                        //given - precondtion or setup
-//                       Employee employee = Employee.builder()
-//                               .firstName("Sachin")
-//                               .lastName("Tendulkar")
-//                               .email("Sachin@gmail.com")
-//                               .build();
+                       Employee employeeOne = Employee.builder()
+                               .firstName("Sachin")
+                               .lastName("Tendulkar")
+                               .email("Sachin@gmail.com")
+                               .build();
                        //save to db
-                       employeeRepository.save(employee);
-//                       String firstName = "Sachin";
-//                       String lastName = "Tendulkar";
+                       employeeRepository.save(employeeOne);
+                       String firstName = "Sachin";
+                       String lastName = "Tendulkar";
 
                        // when - action or behaviour that we are going to test
 
-                       Employee savedEmployee = employeeRepository.findByJPQL(employee.getFirstName(), employee.getLastName());
+                       Employee savedEmployee = employeeRepository.findByJPQL(firstName, lastName);
 
                        //then - verify the output
                        assertThat(savedEmployee).isNotNull();
@@ -216,19 +216,19 @@ public class EmployeeRespositoryTests {
     public void givenFirstNameAndLastName_whenFindByJPQLNamedParams_thenReturnEmployeeObject(){
 
         //given - precondtion or setup
-//        Employee employee = Employee.builder()
-//                .firstName("Sachin")
-//                .lastName("Tendulkar")
-//                .email("Sachin@gmail.com")
-//                .build();
+        Employee employeeOne = Employee.builder()
+                .firstName("Sachin")
+                .lastName("Tendulkar")
+                .email("Sachin@gmail.com")
+                .build();
         //save to db
-        employeeRepository.save(employee);
-//        String firstName = "Sachin";
-//        String lastName = "Tendulkar";
+        employeeRepository.save(employeeOne);
+        String firstName = "Sachin";
+        String lastName = "Tendulkar";
 
         // when - action or behaviour that we are going to test
 
-        Employee savedEmployee = employeeRepository.findByJPQLNamedParams(employee.getFirstName(), employee.getLastName());
+        Employee savedEmployee = employeeRepository.findByJPQLNamedParams(firstName, lastName);
 
         //then - verify the output
         assertThat(savedEmployee).isNotNull();
@@ -240,16 +240,16 @@ public class EmployeeRespositoryTests {
          public void givenFirstNameAndLastName_whenFindByNativeSQL_thenReturnEmployeeObject(){
 
              //given - precondtion or setup
-//             Employee employee = Employee.builder()
-//                     .firstName("Sachin")
-//                     .lastName("Tendulkar")
-//                     .email("Sachin@gmail.com")
-//                     .build();
+             Employee employeeOne = Employee.builder()
+                     .firstName("Sachin")
+                     .lastName("Tendulkar")
+                     .email("Sachin@gmail.com")
+                     .build();
              //save to db
-             employeeRepository.save(employee);
+             employeeRepository.save(employeeOne);
 
              // when - action or behaviour that we are going to test
-        Employee savedEmployee = employeeRepository.findByNativeSQL(employee.getFirstName(), employee.getLastName());
+        Employee savedEmployee = employeeRepository.findByNativeSQL(employeeOne.getFirstName(), employeeOne.getLastName());
 
         //then - verify the output
 
@@ -261,16 +261,16 @@ public class EmployeeRespositoryTests {
     public void givenFirstNameAndLastName_whenFindByNativeSQLNamedParams_thenReturnEmployeeObject(){
 
         //given - precondtion or setup
-//        Employee employee = Employee.builder()
-//                .firstName("Sachin")
-//                .lastName("Tendulkar")
-//                .email("Sachin@gmail.com")
-//                .build();
+        Employee employeeOne = Employee.builder()
+                .firstName("Sachin")
+                .lastName("Tendulkar")
+                .email("Sachin@gmail.com")
+                .build();
         //save to db
-        employeeRepository.save(employee);
+        employeeRepository.save(employeeOne);
 
         // when - action or behaviour that we are going to test
-        Employee savedEmployee = employeeRepository.findByNativeSQLNamed(employee.getFirstName(), employee.getLastName());
+        Employee savedEmployee = employeeRepository.findByNativeSQLNamed(employeeOne.getFirstName(), employeeOne.getLastName());
 
         //then - verify the output
 
