@@ -2,7 +2,7 @@ package com.start.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
+@ToString
 @Setter
 @Getter
 @AllArgsConstructor

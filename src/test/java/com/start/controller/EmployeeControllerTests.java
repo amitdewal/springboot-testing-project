@@ -1,14 +1,10 @@
 package com.start.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.start.model.Employee;
 import com.start.service.EmployeeService;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
-
-
-import org.junit.platform.engine.SelectorResolutionResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -22,12 +18,10 @@ import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.BDDMockito.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest
 public class EmployeeControllerTests {
@@ -124,36 +118,21 @@ public class EmployeeControllerTests {
         Long employeeId = 1L;
 
         //consider below object as it is coming from DB
-        Employee savedEmployee = Employee.builder()
-                .firstName("Amit")
-                .lastName("Dewal")
-                .email("amit@gmail.com")
-                .build();
+        Employee savedEmployee = Employee.builder().firstName("Amit").lastName("Dewal").email("amit@gmail.com").build();
 
         //consider below object coming from api call or say having updated employee information
-        Employee updatedEmployee = Employee.builder()
-                .firstName("Sachin")
-                .lastName("Kumar")
-                .email("sachin@gmail.com")
-                .build();
+        Employee updatedEmployee = Employee.builder().firstName("Sachin").lastName("Kumar").email("sachin@gmail.com").build();
 
         given(employeeService.getEmployeeById(employeeId)).willReturn(Optional.of(savedEmployee));
         given(employeeService.updateEmployee(any(Employee.class))).willAnswer((invocation -> invocation.getArgument(0)));
         // when - action or behaviour that we are going to test
 
-        ResultActions response = mockMvc.perform(put("/api/employees/{id}", employeeId)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(updatedEmployee)));
+        ResultActions response = mockMvc.perform(put("/api/employees/{id}", employeeId).contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(updatedEmployee)));
 
         //then - verify the output
 
-        response.andExpect(status()
-                .isOk())
-                .andDo(print())
-                .andExpect(jsonPath("$.firstName", is(updatedEmployee.getFirstName())))
-                .andExpect(jsonPath("$.lastName",is(updatedEmployee.getLastName())))
-                .andExpect(jsonPath("$.email",is(updatedEmployee.getEmail())));
-         }
+        response.andExpect(status().isOk()).andDo(print()).andExpect(jsonPath("$.firstName", is(updatedEmployee.getFirstName()))).andExpect(jsonPath("$.lastName", is(updatedEmployee.getLastName()))).andExpect(jsonPath("$.email", is(updatedEmployee.getEmail())));
+    }
 
 
     //Negative Scenario
@@ -165,27 +144,16 @@ public class EmployeeControllerTests {
         Long employeeId = 1L;
 
         //consider below object as it is coming from DB
-        Employee savedEmployee = Employee.builder()
-                .firstName("Amit")
-                .lastName("Dewal")
-                .email("amit@gmail.com")
-                .build();
+        Employee savedEmployee = Employee.builder().firstName("Amit").lastName("Dewal").email("amit@gmail.com").build();
 
         //consider below object coming from api call or say having updated employee information
-        Employee updatedEmployee = Employee.builder()
-                .firstName("Sachin")
-                .lastName("Kumar")
-                .email("sachin@gmail.com")
-                .build();
+        Employee updatedEmployee = Employee.builder().firstName("Sachin").lastName("Kumar").email("sachin@gmail.com").build();
 
-        given(employeeService.getEmployeeById(employeeId))
-                             .willReturn(Optional.empty());
+        given(employeeService.getEmployeeById(employeeId)).willReturn(Optional.empty());
         given(employeeService.updateEmployee(any(Employee.class))).willAnswer((invocation -> invocation.getArgument(0)));
         // when - action or behaviour that we are going to test
 
-        ResultActions response = mockMvc.perform(put("/api/employees/{id}", employeeId)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(updatedEmployee)));
+        ResultActions response = mockMvc.perform(put("/api/employees/{id}", employeeId).contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(updatedEmployee)));
 
         //then - verify the output
 
@@ -194,21 +162,21 @@ public class EmployeeControllerTests {
     }
 
 
-     //Junit test for delete Employee REST API
-         @Test
-         public void givenEmployeeId_whenDeleteEmployee_thenReturn200() throws Exception {
+    //Junit test for delete Employee REST API
+    @Test
+    public void givenEmployeeId_whenDeleteEmployee_thenReturn200() throws Exception {
 
-             //given - precondition or setup
-             Long employeeId = 1L;
-             willDoNothing().given(employeeService).deleteEmployee(employeeId);
+        //given - precondition or setup
+        Long employeeId = 1L;
+        willDoNothing().given(employeeService).deleteEmployee(employeeId);
 
 
-             // when - action or behaviour that we are going to test
-             ResultActions response = mockMvc.perform(delete("/api/employees/{id}", employeeId));
+        // when - action or behaviour that we are going to test
+        ResultActions response = mockMvc.perform(delete("/api/employees/{id}", employeeId));
 
-             //then - verify the
+        //then - verify the
 
-             response.andExpect(status().isOk()).andDo(print());
+        response.andExpect(status().isOk()).andDo(print());
 
-         }
+    }
 }

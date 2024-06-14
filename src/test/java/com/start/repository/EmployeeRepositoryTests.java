@@ -2,11 +2,8 @@ package com.start.repository;
 
 import com.start.model.Employee;
 //import as static to we dont need to call the className.MethodName
-import static org.assertj.core.api.Assertions.as;
 import static  org.assertj.core.api.Assertions.assertThat;
 
-import org.assertj.core.api.ListAssert;
-import org.assertj.core.api.ObjectAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @DataJpaTest
-public class EmployeeRespositoryTests {
+public class EmployeeRepositoryTests {
 
     @Autowired
     private  EmployeeRepository employeeRepository;
