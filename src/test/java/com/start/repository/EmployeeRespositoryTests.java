@@ -5,6 +5,7 @@ import com.start.model.Employee;
 import static org.assertj.core.api.Assertions.as;
 import static  org.assertj.core.api.Assertions.assertThat;
 
+import org.assertj.core.api.ListAssert;
 import org.assertj.core.api.ObjectAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -51,7 +52,7 @@ public class EmployeeRespositoryTests {
 
         //then - verify the output
         assertThat(savedEmployee).isNotNull();
-        assertThat(savedEmployee.getId()).isGreaterThan(0);
+        assertThat(savedEmployee.getId()).isPositive();
     }
 
     //Junit test for get all employees operation
@@ -80,7 +81,8 @@ public class EmployeeRespositoryTests {
 
         //then - verify the output
         assertThat(employeeList).isNotNull();
-        assertThat(employeeList.size()).isEqualTo(2);
+       assertThat(employeeList).hasSize(2);
+
     }
 
 
