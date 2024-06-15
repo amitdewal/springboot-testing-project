@@ -1,5 +1,7 @@
 package com.start.repository;
 
+
+import com.start.integration.AbstractionContainerBaseTest;
 import com.start.model.Employee;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 //this below line disabled the in memory database for testing purpose
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class EmployeeRepositoryIT {
+public class EmployeeRepositoryIT  extends AbstractionContainerBaseTest {
 
     @Autowired
     private  EmployeeRepository employeeRepository;
